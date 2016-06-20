@@ -179,7 +179,7 @@ public class InvokeProgram extends Thread {
 			tabItem.setText(hostinfo);
 			tabItem.setData("hwnd", hwnd);
 			tabItem.setData("session", session);
-			System.out.println("start process: "+hwnd);
+			//System.out.println("start process: "+hwnd);
 			setWindowFocus(hwnd);
 		} else {
 			tabItem.dispose();
@@ -205,25 +205,21 @@ public class InvokeProgram extends Thread {
 			killProcess(hwndError);
 	}
 
-  public static void invokeVNC(String arg) {
-    String cmd = Program.APP_VNC.getPath() + arg;
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+	public static void invokeProgram(Program program, String arg){
+		String cmd;
 
-  public static void invokeWinscp(String arg) {
-    String cmd = Program.APP_WINSCP.getPath() + arg;
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+		if (arg != null){
+			cmd = program.getPath() + arg;
+		} else {
+			cmd = program.getPath();
+		}
+
+		try {
+			Runtime.getRuntime().exec(cmd);
+		} catch (IOException ex){
+			System.err.println(ex.getMessage());
+		}
+	}
 
   public static void invokeProxy(String host, String user, String password, String port) {
     String cmd = "cmd /c start " + Program.APP_PLINK.getPath() + " -D " + port + " -pw " + password + " -N " + user + "@" + host;
@@ -252,57 +248,7 @@ public class InvokeProgram extends Thread {
 		}
 	}
 
-  public static void invokeNotePad() {
-    String cmd = "cmd /c start " + Program.APP_NOTEPAD.getPath();
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
-  
-  public static void invokeGenKey() {
-    String cmd = "cmd /c start " + Program.APP_GENKEY.getPath();
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+	public static void startProxy(String arg){
 
-  public static void invokeCapture() {
-    String cmd = "cmd /c start " + Program.APP_CAPTURE.getPath();
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
-
-  public static void invokeCalculator() {
-    String cmd = "cmd /c start " + Program.APP_CALCULATOR.getPath();
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
-
-  public static void invokeRemoteDesk(){
-    String cmd = "cmd /c start " + Program.APP_REMOTE_DESK.getPath();
-    try {
-      Runtime.getRuntime().exec(cmd);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
-
-  public static void startProxy(String arg) {
-
-  }
+	}
 }
