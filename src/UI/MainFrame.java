@@ -99,7 +99,7 @@ public class MainFrame implements SelectionListener, CTabFolder2Listener, MouseL
 		createTabPopupMenu(); // Right button menu
 
 		// Show welcome tab:
-		setWebcomeTab();
+		showWelcomeTab();
 
 		// Show/Hide toolbars based on configuration file values:
 		setVisibleComponents();
@@ -468,7 +468,7 @@ public class MainFrame implements SelectionListener, CTabFolder2Listener, MouseL
 		configuration = new Configuration(this);
 	}
 
-	private void setWebcomeTab(){
+	private void showWelcomeTab(){
 		if (welcomeItem == null || welcomeItem.isDisposed()){
 			welcomeItem = new CTabItem(folder, SWT.CLOSE);
 			Browser browser = new Browser(folder, SWT.NONE);
@@ -627,7 +627,7 @@ public class MainFrame implements SelectionListener, CTabFolder2Listener, MouseL
 		} else if (e.getSource() == itemKenGen){
 		  InvokeProgram.invokeProgram(Program.APP_GENKEY, null);
 		} else if (e.getSource() == itemHelp || e.getSource() == webcomeMenuItem){
-			setWebcomeTab();
+			showWelcomeTab();
 		} else if (e.getSource() == updateItem){
 			MessageDialog.openInformation(shell, "Update tool", "remaining function");
 		} else if (e.getSource() == utilitiesBarMenuItem){
